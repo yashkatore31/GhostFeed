@@ -50,7 +50,14 @@ export default function RootLayout({
                     <UserProvider>
                         <AuthSync>{children}</AuthSync>
                         <Analytics />
-                    </UserProvider>
+                    </UserProvider> 
+                    <script>
+  window.ChatWidgetConfig = {
+    apiKey: "Mn27o9sKsaT3vDIzM2TYeRSkbMwAGn6d"
+  };
+</script>
+
+<script src="https://aadithya2112.github.io/chatterly/chat-widget.iife.js"></script>
                 </body>
             </html>
         </ClerkProvider>
