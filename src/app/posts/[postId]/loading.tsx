@@ -11,7 +11,7 @@ export default function CustomLoading() {
         <LeftSidebar />
       </div>
 
-      {/* Main Content */}
+      {/* Main Content  of site*/}
       <div className="w-full md:w-1/2 lg:w-2/4 border-white/25 md:mx-2 lg:mx-8 md:border-l md:border-r overflow-y-auto scrollbar-hide">
         <div className="bg-transparent animate-pulse">
           {/* Section Heading */}
