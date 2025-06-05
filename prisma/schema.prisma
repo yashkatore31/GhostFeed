@@ -1,0 +1,74 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String    @id @default(uuid())
+  clerkId     String    @unique
+  email String    @unique
+  username    String    @unique
+  posts       Post[]
+  comments    Comment[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+
+model Post {
+  id        String    @id @default(uuid())
+  userId    String
+  content   String
+  imageUrl  String?
+  gifUrl    String?
+  hashtags  String[]  @default([])
+  comments  Comment[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Comment {
+  id        String   @id @default(uuid())
+  content   String
+  postId    String
+  userId    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+
+
+
+
+
+
+
+
+
+
+CLOUDINARY_CLOUD_NAME=dgosb58vo
+CLOUDINARY_API_KEY=347436634692519
+CLOUDINARY_API_SECRET=WejDSK-xnNG-xLEgkyuqj6YZHnQ
+
+NEXT_PUBLIC_GIPHY_API_KEY=AhxJQOBaGEUkEASYabrEsFiVbiofZmMI
+
+
+# ------------------------------------------
+# SUPABASE_URL=https://prdwxdedygrtmlnlpgqo.supabase.co
+# SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InByZHd4ZGVkeWdydG1sbmxwZ3FvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDkxMTU3MzEsImV4cCI6MjA2NDY5MTczMX0.1U50SuNI8EVOvBysMfH3et3B4_yzS-Yh7PFw3S3PGFA
+
+# NEXT_PUBLIC_SUPABASE_URL=https://prdwxdedygrtmlnlpgqo.supabase.co
+# NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InByZHd4ZGVkeWdydG1sbmxwZ3FvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDkxMTU3MzEsImV4cCI6MjA2NDY5MTczMX0.1U50SuNI8EVOvBysMfH3et3B4_yzS-Yh7PFw3S3PGFA
+            
+            
+DATABASE_URL=postgresql://neondb_owner:npg_IHZUR9Tdc3zO@ep-jolly-wildflower-a86skc68-pooler.eastus2.azure.neon.tech/neondb?sslmode=require 
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_c3RhYmxlLXdhbGxhYnktMzIuY2xlcmsuYWNjb3VudHMuZGV2JA
+CLERK_SECRET_KEY=sk_test_go5wMJY1vvJnHivo1wgscRyA5hz54jaz0zgBvU2Dsv
+NEXT_PUBLIC_CLERK_FRONTEND_API=https://stable-wallaby-32.clerk.accounts.dev
