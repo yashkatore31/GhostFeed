@@ -25,7 +25,7 @@ export async function GET(request: Request) {
                 data: {
                     clerkId: user.id,
                     username,
-                    phoneNumber: user.phoneNumbers?.[0]?.phoneNumber
+                    email: user.emailAddresses?.[0]?.emailAddress ?? null
                 },
             });
         }
